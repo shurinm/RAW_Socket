@@ -3,7 +3,7 @@
 // Формируем ETH заголовок
 u_char *eth_filling(u_char *dmac, u_char *smac, u_char *data, int dlen)
 {
-	struct eth_header  *eth_hdr;	// Указатель на заголовок ethernet
+	struct eth_header  *eth_hdr;	                // Указатель на заголовок ethernet
 	u_char 	*frame;					// Сформированный фрейм
 	int flength;					// Длина фрейма
 
