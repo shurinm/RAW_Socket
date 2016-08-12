@@ -9,7 +9,7 @@
 // Создаем равсокет
 int main()
 {
-	struct sockaddr_ll  addr;   // Данные назначения для физического уровня
+    struct sockaddr_ll  addr;   // Данные назначения для физического уровня
     u_char *data;               // Данные для следующего уровня
     int psize;                  // Размер данных
     // Создаем RAW сокет
@@ -19,7 +19,7 @@ int main()
 		perror("raw_soccet ERROR");
 		exit(-1);
 	}
-	 // Обворачиваем заголовком транспортного уровня
+    // Обворачиваем заголовком транспортного уровня
     data = udp_filling(SRC_IP, DST_IP, SRC_PORT, DST_PORT, MSG, strlen(MSG));
     psize = strlen(MSG) + sizeof(struct udp_header);
 
