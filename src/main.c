@@ -13,13 +13,13 @@ int main()
     u_char *data;               // Данные для следующего уровня
     int psize;                  // Размер данных
     // Создаем RAW сокет
-    int raw_soccet= socket(AF_PACKET, SOCK_RAW, IPPROTO_RAW);
-    if (raw_soccet==-1) 
-    {
-        perror("raw_soccet ERROR");
-        exit(-1);
-    }
-     // Обворачиваем заголовком транспортного уровня
+	int raw_soccet= socket(AF_INET, SOCK_RAW, IPPROTO_ICMP);
+	if (raw_soccet==-1) 
+	{
+		perror("raw_soccet ERROR");
+		exit(-1);
+	}
+    // Обворачиваем заголовком транспортного уровня
     data = udp_filling(SRC_IP, DST_IP, SRC_PORT, DST_PORT, MSG, strlen(MSG));
     psize = strlen(MSG) + sizeof(struct udp_header);
 
