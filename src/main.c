@@ -1,9 +1,9 @@
 #include "../header/raw_socket.h"
 
 #define SRC_IP      "192.168.2.43"  // IP источника
-#define DST_IP      "192.168.2.33"  // IP назначения
-#define SRC_PORT    3512            // Порт источника
-#define DST_PORT    1335            // Порт назначения
+#define DST_IP      "192.168.2.73"  // IP назначения
+#define SRC_PORT    1345            // Порт источника
+#define DST_PORT    1336            // Порт назначения
 #define MSG         "Hello, World!" // Посылаемое сообщение
 
 // Создаем равсокет
@@ -13,7 +13,7 @@ int main()
     u_char *data;               // Данные для следующего уровня
     int psize;                  // Размер данных
     // Создаем RAW сокет
-	int raw_soccet= socket(AF_INET, SOCK_RAW, IPPROTO_ICMP);
+	int raw_soccet= socket(AF_PACKET, SOCK_RAW, IPPROTO_RAW);
 	if (raw_soccet==-1) 
 	{
 		perror("raw_soccet ERROR");
@@ -28,8 +28,8 @@ int main()
     psize += sizeof(struct ip_header);
 
     // Обворачиваем заголовком канального уровня
-    u_char smac[] = {0x48, 0x5b, 0x39, 0x7a, 0xcf, 0x7f};   // MAC источника
-    u_char dmac[] = {0x38, 0x63, 0xbb, 0xae, 0xcc, 0xbc};   // MAC назначения
+    u_char smac[] = {0x38, 0x63, 0xbb, 0xae, 0xcc, 0xbc};   // MAC источника
+    u_char dmac[] = {0x48, 0x5b, 0x39, 0x7a, 0xcf, 0x7f};   // MAC назначения
     data = eth_filling(dmac, smac, data, psize);
     psize += sizeof(struct eth_header);
 

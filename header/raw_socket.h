@@ -29,14 +29,14 @@ struct ip_header{
     u_int8_t ip_ttl;				//время жизни
     u_int8_t ip_p;					// nип инкапсулированного протокола
     u_short ip_sum;					// контрольная сумма
-    int ip_src, ip_dst;	// адрес отправителя, адрес получателя
+    int ip_src, ip_dst;	            // адрес отправителя, адрес получателя
 };
 
 // структура UDP заголовка
 struct udp_header {
 	u_short	uh_sport;		// номер порта отправителя
 	u_short	uh_dport;		// номер порта получателя
-	u_short	length;		// длина
+	u_short	length;		    // длина
 	u_short	chsum;			// контрольная сумма
 };
 
