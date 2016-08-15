@@ -34,12 +34,12 @@ u_short chsum_ip (u_char *ip_header)
 	int shsum;
 	u_short fbyte;
 	u_short sbyte;
-    int ip_len;
+    int ip_leng;
 
     shsum = 0;
-    ip_len = sizeof(struct ip_header);
+    ip_leng = sizeof(struct ip_header);
 
-	for (int i = 0; i < ip_len; i += 2)
+	for (int i = 0; i < ip_leng; i += 2)
 	{
 		if (i == 10)
 			continue;
