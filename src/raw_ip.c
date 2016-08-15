@@ -31,24 +31,24 @@ u_char *ip_filling(u_char *ip_src, u_char *ip_dst, u_char *data, int dlen)
 // функция для подсчета контрольной суммы IP пакета
 u_short chsum_ip (u_char *ip_header) 
 {
-	int shsum;
-	u_short fbyte;
-	u_short sbyte;
+    int shsum;
+    u_short fbyte;
+    u_short sbyte;
     int ip_leng;
 
     shsum = 0;
     ip_leng = sizeof(struct ip_header);
 
-	for (int i = 0; i < ip_leng; i += 2)
-	{
-		if (i == 10)
-			continue;
-		fbyte = (ip_header[i]);
-		sbyte = (ip_header[i + 1]);
-		shsum += (fbyte<<8)|sbyte;
-	}
+    for (int i = 0; i < ip_leng; i += 2)
+    {
+        if (i == 10)
+            continue;
+        fbyte = (ip_header[i]);
+        sbyte = (ip_header[i + 1]);
+        shsum += (fbyte<<8)|sbyte;
+    }
     shsum = shsum + (shsum>>16);
     shsum = ~shsum;
-    printf("\nshsum %#x\n", shsum);
+    return shsum&0xFFFF;
 }
 

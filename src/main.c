@@ -1,6 +1,6 @@
 #include "../header/raw_socket.h"
 
-#define SRC_IP      "192.168.2.43"  // IP источника
+#define SRC_IP      "192.168.2.46"  // IP источника
 #define DST_IP      "192.168.2.73"  // IP назначения
 #define SRC_PORT    1345            // Порт источника
 #define DST_PORT    1336            // Порт назначения
@@ -9,17 +9,17 @@
 // Создаем равсокет
 int main()
 {
-	struct sockaddr_ll  addr;   // Данные назначения для физического уровня
+    struct sockaddr_ll  addr;   // Данные назначения для физического уровня
     u_char *data;               // Данные для следующего уровня
     int psize;                  // Размер данных
     // Создаем RAW сокет
-	int raw_soccet= socket(AF_PACKET, SOCK_RAW, IPPROTO_RAW);
-	if (raw_soccet==-1) 
-	{
-		perror("raw_soccet ERROR");
-		exit(-1);
-	}
-	 // Обворачиваем заголовком транспортного уровня
+    int raw_soccet= socket(AF_PACKET, SOCK_RAW, IPPROTO_RAW);
+    if (raw_soccet==-1) 
+    {
+        perror("raw_soccet ERROR");
+        exit(-1);
+    }
+     // Обворачиваем заголовком транспортного уровня
     data = udp_filling(SRC_IP, DST_IP, SRC_PORT, DST_PORT, MSG, strlen(MSG));
     psize = strlen(MSG) + sizeof(struct udp_header);
 

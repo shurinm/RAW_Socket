@@ -3,10 +3,10 @@
 //  Формирует UDP заголовок 
 u_char *udp_filling(u_char *sours, u_char *dest, short uh_sport, short uh_dport, u_char *data, int dlen)
 {
-    struct psevdo_header hdr_psd; 	// Псевдозаголовок
-    struct udp_header *hdr_udp;   		// Заголовок UDP
-    u_char *packet;    				// Указатель на начало заголовка
-    int pack_len;   				// Длина пакета 
+    struct psevdo_header hdr_psd;   // Псевдозаголовок
+    struct udp_header *hdr_udp;         // Заголовок UDP
+    u_char *packet;                 // Указатель на начало заголовка
+    int pack_len;                   // Длина пакета 
     
     // Формируем псевдозаголовок (Необходим для подсчета контрольной суммы)
     pack_len = sizeof(struct udp_header) + dlen;
@@ -36,7 +36,7 @@ u_short udp_checksum(u_char *hdr_udp, u_char *hdr_psd)
 {
     u_short fbyte;      // Первый байт 16ти битного блока (Для разворота)
     u_short sbyte;      // Второй байт 16ти битного блока (Для разворота)
-    int chsum;      	// Контрольная сумма
+    int chsum;          // Контрольная сумма
     u_short length;     // Длина пакета 
 
     // Считаем контрольную сумму псевдозаголовка, разворачивая байты
